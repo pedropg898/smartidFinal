@@ -64,11 +64,8 @@ public class Presenca extends AppCompatActivity {
         return have_WIFI || have_MobileData;
     }
 
-
-
-    //Faz set text na edit text para depois ser passado em string quando é clicado no btn "ok"
     private void updateLabel() {
-        String myFormat = "yyyy-MM-dd"; //In which you need put here
+        String myFormat = "yyyy-MM-dd";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
 
         et2.setText(sdf.format(myCalendar.getTime()));
@@ -77,39 +74,28 @@ public class Presenca extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        //Reset ao arraylist
         if(!ap.isEmpty()) {
             ap.clear();
         }
 
         String url = "http://"+ Utils.IP +"/smartid/api/presencas/1";
-
-        //jr
-        // Formulate the request and handle the response.
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            //Toast.makeText(getActivity(), response.getString("status"), Toast.LENGTH_SHORT).show();
                             JSONArray arr = response.getJSONArray("DATA");
-                            //Percorre o array e pega nos valores pretendidos
                             for (int i = 0; i < arr.length(); i++) {
                                 JSONObject obj = arr.getJSONObject(i);
-
-                                //Cria pessoa
                                 Aluno p = new Aluno(obj.getString("UC"), obj.getString("Professor"), obj.getString("Data presenca"));
 
-                                ap.add(p);  //adiciona ao array
+                                ap.add(p);
                             }
                             CustomArrayAdapter itemsAdapter = new CustomArrayAdapter(Presenca.this, ap);
                             ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                             itemsAdapter.notifyDataSetChanged();
                         } catch (JSONException ex) {
-                            //Log.d("exc",ex.getMessage());
-                            //Toast.makeText(Presenca.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
                     @Override
@@ -134,7 +120,6 @@ public class Presenca extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_sort:
                 //icon
@@ -157,17 +142,12 @@ public class Presenca extends AppCompatActivity {
                         }
 
                         String url = "http://"+Utils.IP+"/smartid/api/presencas/1";
-
-
-                        // Formulate the request and handle the response.
                         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         try {
-                                            //Toast.makeText(getActivity(), response.getString("status"), Toast.LENGTH_SHORT).show();
                                             JSONArray arr = response.getJSONArray("DATA");
-                                            //Percorre o array e pega nos valores pretendidos
                                             for (int i = 0; i < arr.length(); i++) {
                                                 JSONObject obj = arr.getJSONObject(i);
 
@@ -175,7 +155,7 @@ public class Presenca extends AppCompatActivity {
                                                 if(editText.getText().toString().toLowerCase().equals(obj.getString("UC").toLowerCase()))
                                                 {
                                                     Aluno p = new Aluno(obj.getString("UC"), obj.getString("Professor"), obj.getString("Data presenca"));
-                                                    ap.add(p);  //adiciona ao array
+                                                    ap.add(p);
                                                 }
 
                                             }
@@ -188,11 +168,7 @@ public class Presenca extends AppCompatActivity {
                                             ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                                             itemsAdapter.notifyDataSetChanged();
                                         } catch (JSONException ex) {
-
-                                            //Log.d("exc",ex.getMessage());
-                                            //Toast.makeText(Presenca.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
-                                        //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
                                     }
                                 }, new Response.ErrorListener() {
                                     @Override
@@ -253,23 +229,18 @@ public class Presenca extends AppCompatActivity {
                         }
 
                         String url3 = "http://"+Utils.IP+"/smartid/api/dia/1&" + et2.getText().toString();
-
-
-                        // Formulate the request and handle the response.
                         JsonObjectRequest jsObjRequest3 = new JsonObjectRequest
                                 (Request.Method.GET, url3, null, new Response.Listener<JSONObject>() {
                                     @Override
                                     public void onResponse(JSONObject response) {
                                         try {
-
                                             JSONArray arr = response.getJSONArray("DATA");
-                                            //Percorre o array e pega nos valores pretendidos
                                             for (int i = 0; i < arr.length(); i++) {
                                                 JSONObject obj = arr.getJSONObject(i);
 
                                                 Aluno p = new Aluno(obj.getString("UC"), obj.getString("Professor"), obj.getString("Data presenca"));
 
-                                                ap.add(p);  //adiciona ao array
+                                                ap.add(p);
 
                                             }
 
@@ -278,11 +249,7 @@ public class Presenca extends AppCompatActivity {
                                             ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                                             itemsAdapter.notifyDataSetChanged();
                                         } catch (JSONException ex) {
-
-                                            //Log.d("exc",ex.getMessage());
-                                            //Toast.makeText(Presenca.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                                         }
-                                        //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
                                     }
                                 }, new Response.ErrorListener() {
                                     @Override
@@ -309,33 +276,23 @@ public class Presenca extends AppCompatActivity {
                 }
 
                 String url4 = "http://"+Utils.IP+"/smartid/api/ordeml10/1";
-
-
-                // Formulate the request and handle the response.
                 JsonObjectRequest jsObjRequest4 = new JsonObjectRequest
                         (Request.Method.GET, url4, null, new Response.Listener<JSONObject>() {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    //Toast.makeText(getActivity(), response.getString("status"), Toast.LENGTH_SHORT).show();
                                     JSONArray arr = response.getJSONArray("DATA");
-                                    //Percorre o array e pega nos valores pretendidos
                                     for (int i = 0; i < arr.length(); i++) {
                                         JSONObject obj = arr.getJSONObject(i);
-
-                                        //Cria pessoa
                                         Aluno p = new Aluno(obj.getString("UC"), obj.getString("Professor"), obj.getString("Data presenca"));
 
-                                        ap.add(p);  //adiciona ao array
+                                        ap.add(p);
                                     }
                                     CustomArrayAdapter itemsAdapter = new CustomArrayAdapter(Presenca.this, ap);
                                     ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                                     itemsAdapter.notifyDataSetChanged();
                                 } catch (JSONException ex) {
-                                    //Log.d("exc",ex.getMessage());
-                                    //Toast.makeText(Presenca.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                                 }
-                                //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
                             }
                         }, new Response.ErrorListener() {
                             @Override
