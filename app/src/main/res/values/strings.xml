@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">smartid</string>
+    <string name="logout">Logout</string>
+    <string name="nome">Nome:</string>
+    <string name="numero">Número:</string>
+    <string name="smartid">SmartID</string>
+    <string name="aluno">Aluno:</string>
+    <string name="verpresenca">Ver presenças</string>
+    <string name="verfalta">Ver faltas</string>
 </resources>
