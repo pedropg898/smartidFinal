@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    tools:context="com.example.smartid.Login">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:ems="10"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="66dp"
+        android:id="@+id/login_name"
+        android:hint="@string/vnm" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_below="@+id/login_name"
+        android:layout_alignStart="@+id/login_name"
+        android:layout_marginTop="58dp"
+        android:id="@+id/login_password"
+        android:hint="@string/password"
+        android:layout_alignLeft="@+id/login_name" />
+
+    <CheckBox android:id="@+id/logincb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/login_password"
+        android:layout_centerInParent="true"
+        android:text="@string/loginauto"/>
+
+    <Button
+        android:id="@+id/login_button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/logincb"
+        android:layout_marginTop="15dp"
+        android:layout_centerInParent="true"
+        android:background="#000000"
+        android:text="@string/login" />
+
+
+</RelativeLayout>
