@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Falta">
         <activity android:name=".Presenca">
         <activity android:name=".MainActivity" android:configChanges="keyboardHidden|orientation|screenSize">
         </activity>
