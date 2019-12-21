@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">smartid</string>
+
     <string name="sort">Organizar</string>
     <string name="Disciplina">Pesquisar UC</string>
     <string name="Dia">Pesquisar por Dia</string>
@@ -11,4 +12,19 @@
     <string name="NEPND">Não existem registos de presenças neste dia!</string>
     <string name="NER">Não existem registos para listar!</string>
     <string name="NET">Sem conexão à internet!</string>
+
+
+    <string name="logout">Logout</string>
+    <string name="nome">Nome:</string>
+    <string name="numero">Número:</string>
+    <string name="smartid">SmartID</string>
+    <string name="aluno">Aluno:</string>
+    <string name="verpresenca">Ver presenças</string>
+    <string name="verfalta">Ver faltas</string>
+    <string name="vnm">Nome</string>
+    <string name="password">Password</string>
+    <string name="loginauto">Permanecer conectado</string>
+    <string name="login">Login</string>
+    <string name="NPI">Erro! Verifique as credenciais ou a conexão à internet</string>
+
 </resources>
