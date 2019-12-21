@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainActivity">
+
+
+    <item
+        android:id="@+id/verpresencas"
+        android:title="@string/verpresenca"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/verfaltas"
+        android:title="@string/verfalta"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_logout"
+        android:title="@string/logout"
+        app:showAsAction="never"/>
+
+
+</menu>

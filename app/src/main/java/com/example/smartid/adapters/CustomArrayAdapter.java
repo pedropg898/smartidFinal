@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import com.example.smartid.R;
 import com.example.smartid.entities.Aluno;
 
+
 import java.util.ArrayList;
 
 public class CustomArrayAdapter extends ArrayAdapter<Aluno> {
