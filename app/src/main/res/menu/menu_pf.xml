@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.main.MainActivity">
+
+
+
+    <item android:id="@+id/action_sort"
+        android:title="@string/sort"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_sort_white">
+        <menu>
+            <item android:id="@+id/LP"
+                android:title="@string/ListaPrincipal" />
+            <item android:id="@+id/UC"
+                android:title="@string/Disciplina" />
+            <item android:id="@+id/Dia"
+                android:title="@string/Dia" />
+            <item android:id="@+id/L10I"
+                android:title="@string/L10I" />
+        </menu>
+
+
+    </item>
+
+</menu>

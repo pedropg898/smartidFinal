@@ -1,6 +1,19 @@
 <resources>
     <string name="app_name">smartid</string>
 
+    <string name="sort">Organizar</string>
+    <string name="Disciplina">Pesquisar UC</string>
+    <string name="Dia">Pesquisar por Dia</string>
+    <string name="L10I">Últimos 10 registos</string>
+    <string name="ListaPrincipal">Listagem principal</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="ok">OK</string>
+    <string name="NEUC">Não existem UC com esse nome!</string>
+    <string name="NEPND">Não existem registos de presenças neste dia!</string>
+    <string name="NER">Não existem registos para listar!</string>
+    <string name="NET">Sem conexão à internet!</string>
+
+
     <string name="logout">Logout</string>
     <string name="nome">Nome:</string>
     <string name="numero">Número:</string>
