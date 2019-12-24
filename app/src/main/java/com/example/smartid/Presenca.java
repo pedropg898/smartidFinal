@@ -2,6 +2,7 @@ package com.example.smartid;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,11 +41,17 @@ public class Presenca extends AppCompatActivity {
     ArrayList<Aluno> ap = new ArrayList<>();
     EditText editText, et2;
     final Calendar myCalendar = Calendar.getInstance();
+    SharedPreferences sharedPreferences;
+    int id_user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.presenca);
+
+        sharedPreferences = getSharedPreferences("USER_CREDENTIALS",MODE_PRIVATE);
+        id_user = sharedPreferences.getInt("IDUSER", -1);
 
         if (!haveNetwork()) {
             Toast.makeText(Presenca.this, getResources().getString(R.string.NET), Toast.LENGTH_SHORT).show();
@@ -78,7 +86,7 @@ public class Presenca extends AppCompatActivity {
             ap.clear();
         }
 
-        String url = "http://"+ Utils.IP +"/smartid/api/presencas/1";
+        String url = "http://"+ Utils.IP +"/smartid/api/presencas/" + id_user;
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                     @Override
@@ -131,6 +139,8 @@ public class Presenca extends AppCompatActivity {
 
                 final Dialog dialog=new Dialog(this);
                 dialog.setContentView(R.layout.input_box);
+                TextView txtMessage=(TextView)dialog.findViewById(R.id.txtmessage);
+                txtMessage.setText(getResources().getString(R.string.PesqUC));
                 editText=(EditText)dialog.findViewById(R.id.txtinput);
                 Button bt=(Button)dialog.findViewById(R.id.btdone);
                 bt.setOnClickListener(new View.OnClickListener() {
@@ -141,7 +151,7 @@ public class Presenca extends AppCompatActivity {
                             ap.clear();
                         }
 
-                        String url = "http://"+Utils.IP+"/smartid/api/presencas/1";
+                        String url = "http://"+Utils.IP+"/smartid/api/presencas/" + id_user;
                         JsonObjectRequest jsObjRequest = new JsonObjectRequest
                                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
                                     @Override
@@ -193,6 +203,8 @@ public class Presenca extends AppCompatActivity {
 
                 final Dialog dialog2=new Dialog(this);
                 dialog2.setContentView(R.layout.input_box2);
+                TextView txtMessage2=(TextView)dialog2.findViewById(R.id.txtmessage2);
+                txtMessage2.setText(getResources().getString(R.string.PesqDATA));
                 et2=(EditText)dialog2.findViewById(R.id.txtinput2);
                 Button bt2=(Button)dialog2.findViewById(R.id.btdone2);
                 ///////////////////////////////////////////////////////
@@ -228,7 +240,7 @@ public class Presenca extends AppCompatActivity {
                             ap.clear();
                         }
 
-                        String url3 = "http://"+Utils.IP+"/smartid/api/dia/1&" + et2.getText().toString();
+                        String url3 = "http://"+Utils.IP+"/smartid/api/dia/"+ id_user + "&" + et2.getText().toString();
                         JsonObjectRequest jsObjRequest3 = new JsonObjectRequest
                                 (Request.Method.GET, url3, null, new Response.Listener<JSONObject>() {
                                     @Override
@@ -275,7 +287,7 @@ public class Presenca extends AppCompatActivity {
                     ap.clear();
                 }
 
-                String url4 = "http://"+Utils.IP+"/smartid/api/ordeml10/1";
+                String url4 = "http://"+Utils.IP+"/smartid/api/ordeml10/" + id_user;
                 JsonObjectRequest jsObjRequest4 = new JsonObjectRequest
                         (Request.Method.GET, url4, null, new Response.Listener<JSONObject>() {
                             @Override

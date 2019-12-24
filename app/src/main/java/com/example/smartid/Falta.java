@@ -2,6 +2,7 @@ package com.example.smartid;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,11 +43,16 @@ import java.util.Locale;
         ArrayList<Aluno> ap = new ArrayList<>();
         EditText editText, et2;
         final Calendar myCalendar = Calendar.getInstance();
+        SharedPreferences sharedPreferences;
+        int id_user;
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.falta);
+
+            sharedPreferences = getSharedPreferences("USER_CREDENTIALS",MODE_PRIVATE);
+            id_user = sharedPreferences.getInt("IDUSER", -1);
 
             if (!haveNetwork()) {
                 Toast.makeText(Falta.this, getResources().getString(R.string.NET), Toast.LENGTH_SHORT).show();
@@ -84,7 +91,7 @@ import java.util.Locale;
                 ap.clear();
             }
 
-            String url = "http://"+ Utils.IP +"/smartid/api/faltas/1";
+            String url = "http://"+ Utils.IP +"/smartid/api/faltas/"+id_user;
 
 
             // Formulate the request and handle the response.
@@ -99,7 +106,7 @@ import java.util.Locale;
                                 for (int i = 0; i < arr.length(); i++) {
                                     JSONObject obj = arr.getJSONObject(i);
 
-                                    //Cria pessoa
+
                                     Aluno p = new Aluno(obj.getString("UC"), obj.getString("Professor"), obj.getString("Data falta"));
 
                                     ap.add(p);  //adiciona ao array
@@ -108,10 +115,9 @@ import java.util.Locale;
                                 ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                                 itemsAdapter.notifyDataSetChanged();
                             } catch (JSONException ex) {
-                                //Log.d("exc",ex.getMessage());
-                                //Toast.makeText(Falta.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+
                             }
-                            //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+
                         }
                     }, new Response.ErrorListener() {
                         @Override
@@ -121,10 +127,6 @@ import java.util.Locale;
                             }
                             else {
                                 Toast.makeText(Falta.this, getResources().getString(R.string.NER), Toast.LENGTH_SHORT).show();
-
-                                Toast.makeText(Falta.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                                Log.d("Erro", error.getMessage());
-
                             }
                         }
                     });
@@ -152,6 +154,8 @@ import java.util.Locale;
 
                     final Dialog dialog=new Dialog(this);
                     dialog.setContentView(R.layout.input_box);
+                    TextView txtMessage=(TextView)dialog.findViewById(R.id.txtmessage);
+                    txtMessage.setText(getResources().getString(R.string.PesqUC));
                     editText=(EditText)dialog.findViewById(R.id.txtinput);
                     Button bt=(Button)dialog.findViewById(R.id.btdone);
                     bt.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +166,7 @@ import java.util.Locale;
                                 ap.clear();
                             }
 
-                            String url = "http://"+Utils.IP+"/smartid/api/faltas/1";
+                            String url = "http://"+Utils.IP+"/smartid/api/faltas/"+id_user;
 
 
                             // Formulate the request and handle the response.
@@ -171,9 +175,9 @@ import java.util.Locale;
                                         @Override
                                         public void onResponse(JSONObject response) {
                                             try {
-                                                //Toast.makeText(getActivity(), response.getString("status"), Toast.LENGTH_SHORT).show();
+
                                                 JSONArray arr = response.getJSONArray("DATA");
-                                                //Percorre o array e pega nos valores pretendidos
+
                                                 for (int i = 0; i < arr.length(); i++) {
                                                     JSONObject obj = arr.getJSONObject(i);
 
@@ -195,10 +199,7 @@ import java.util.Locale;
                                                 itemsAdapter.notifyDataSetChanged();
                                             } catch (JSONException ex) {
 
-                                                //Log.d("exc",ex.getMessage());
-                                                //Toast.makeText(Falta.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-                                            //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
                                         }
                                     }, new Response.ErrorListener() {
                                         @Override
@@ -225,6 +226,8 @@ import java.util.Locale;
 
                     final Dialog dialog2=new Dialog(this);
                     dialog2.setContentView(R.layout.input_box2);
+                    TextView txtMessage2=(TextView)dialog2.findViewById(R.id.txtmessage2);
+                    txtMessage2.setText(getResources().getString(R.string.PesqDATA));
                     et2=(EditText)dialog2.findViewById(R.id.txtinput2);
                     Button bt2=(Button)dialog2.findViewById(R.id.btdone2);
                     ///////////////////////////////////////////////////////
@@ -261,7 +264,7 @@ import java.util.Locale;
                             }
 
 
-                            String url3 = "http://"+Utils.IP+"/smartid/api/diaf/1&" + et2.getText().toString();
+                            String url3 = "http://"+Utils.IP+"/smartid/api/diaf/" + id_user+ "&" +et2.getText().toString();
 
                             // Formulate the request and handle the response.
                             JsonObjectRequest jsObjRequest3 = new JsonObjectRequest
@@ -286,11 +289,8 @@ import java.util.Locale;
                                                 ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                                                 itemsAdapter.notifyDataSetChanged();
                                             } catch (JSONException ex) {
-
-                                                //Log.d("exc",ex.getMessage());
-                                                //Toast.makeText(Falta.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
-                                            //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+
                                         }
                                     }, new Response.ErrorListener() {
                                         @Override
@@ -316,7 +316,7 @@ import java.util.Locale;
                         ap.clear();
                     }
 
-                    String url4 = "http://"+ Utils.IP+"/smartid/api/ordeml10f/1";
+                    String url4 = "http://"+ Utils.IP+"/smartid/api/ordeml10f/"+id_user;
 
                     // Formulate the request and handle the response.
                     JsonObjectRequest jsObjRequest4 = new JsonObjectRequest
@@ -339,10 +339,9 @@ import java.util.Locale;
                                         ((ListView) findViewById(R.id.lista)).setAdapter(itemsAdapter);
                                         itemsAdapter.notifyDataSetChanged();
                                     } catch (JSONException ex) {
-                                        //Log.d("exc",ex.getMessage());
-                                        //Toast.makeText(Falta.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+
                                     }
-                                    //Toast.makeText(this, response.toString(), Toast.LENGTH_SHORT).show();
+
                                 }
                             }, new Response.ErrorListener() {
                                 @Override

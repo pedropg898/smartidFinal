@@ -9,14 +9,24 @@
     android:paddingTop="16dp"
     tools:context="com.example.smartid.Login">
 
+
+    <ImageView
+        android:id="@+id/imagem1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/estgipvc"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="text"
         android:ems="10"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/imagem1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp"
         android:id="@+id/login_name"
         android:hint="@string/vnm" />
 
@@ -27,7 +37,7 @@
         android:ems="10"
         android:layout_below="@+id/login_name"
         android:layout_alignStart="@+id/login_name"
-        android:layout_marginTop="58dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/login_password"
         android:hint="@string/password"
         android:layout_alignLeft="@+id/login_name" />

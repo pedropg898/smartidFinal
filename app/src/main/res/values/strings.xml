@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">smartid</string>
+    <string name="app_name">SmartID</string>
+    <string name="pagent">Página de entrada</string>
+    <string name="pres">Presenças</string>
+    <string name="falt">Faltas</string>
+
 
     <string name="sort">Organizar</string>
     <string name="Disciplina">Pesquisar UC</string>
@@ -24,6 +28,9 @@
     <string name="password">Password</string>
     <string name="loginauto">Permanecer conectado</string>
     <string name="login">Login</string>
+    <string name="loginsi">Login - SmartID</string>
     <string name="NPI">Erro! Verifique as credenciais ou a conexão à internet</string>
+    <string name="PesqUC">Pesquisar por UC</string>
+    <string name="PesqDATA">Pesquisar por dia</string>
 
 </resources>

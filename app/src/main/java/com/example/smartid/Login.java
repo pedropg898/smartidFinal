@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle(getResources().getString(R.string.login));
+        setTitle(getResources().getString(R.string.loginsi));
         setContentView(R.layout.login);
 
         sharedPreferences=getSharedPreferences("USER_CREDENTIALS",MODE_PRIVATE);

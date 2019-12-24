@@ -35,38 +35,19 @@
         android:text="@string/aluno"
         android:textSize="20dp"
         android:layout_marginTop="50dp"
-        android:paddingLeft="70dp"
+        android:layout_centerHorizontal="true"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pedro Gonçalves"
-        android:layout_toRightOf="@+id/nome"
-        android:paddingLeft="5dp"
-        android:textSize="20dp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/smartid"
 
-        />
     <TextView
         android:id="@+id/numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/numero"
         android:layout_marginTop="20dp"
-        android:paddingLeft="110dp"
+        android:layout_centerHorizontal="true"
         android:textSize="20dp"
         android:layout_below="@+id/nome"
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="21606"
-        android:paddingLeft="5dp"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        android:layout_toRightOf="@+id/numero"
-        android:layout_below="@+id/nome"
-        />
+
 
 </RelativeLayout>
